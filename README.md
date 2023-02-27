@@ -3,7 +3,7 @@ idea 来源于每日三省吾身，“今天吃啥”，与其纠结不如写个
 
 效果：访问 url，得到推荐吃饭地点。
 
-demo: https://bkcat.cn:7000 || https://bkcat.cn/eat/eatwhat.html
+demo: http://bkcat.cn:7000 || https://bkcat.cn/eat/eatwhat.html
 
 ### 架构变迁
 **html + js** &rarr; **.sh + .py + .txt + .html**
