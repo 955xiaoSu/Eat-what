@@ -15,9 +15,9 @@ demo: https://bkcat.cn/eat/eatwhat.html
 | eatwhat.py| 生成推荐吃饭地点 |
 | eatwhat.txt| 存储 .py 生成的推荐吃饭地点，供 .html 调用 | 
 | eatwhat.sh | 调用 .py 并将结果重定向至 .txt脚本 |
-| relocate.py(expired) | 重定向至 ./eatwhat.html |
-| index.js(expired) | node.js 起的 http 服务 |
-| flask.log、record.log(expired) | .py 运行日志 |
+| relocate.py (expired) | 重定向至 ./eatwhat.html |
+| index.js (expired) | node.js 起的 http 服务 |
+| flask.log、record.log (expired) | .py 运行日志 |
 
 过程：`eatwhat.sh` 调用 `eatwhat.py` 并将生成结果重定向至 `eatwhat.txt`，`eatwhat.html` 引用 `eatwhat.txt`内容。
 
