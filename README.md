@@ -3,7 +3,7 @@
 
 效果：访问 url，体验三种功能。1）随机地点推荐；2）周边美食推荐；3）跟 AI 聊聊天
 
-demo: https://bkcat.cn/eat/
+demo: https://bkcat.cn/eat
 
 ### 架构设计
 前端：html
