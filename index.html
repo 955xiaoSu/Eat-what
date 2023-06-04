@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta charset="UTF-8">
+    <title>美食推荐</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: "宋体", Arial, sans-serif;
+            text-align: center;
+            background: url(./picture/index_background.png) no-repeat center center fixed;
+            background-size: cover;
+            opacity: 1.0;
+            color:rgb(253, 158, 25);
+        }
+
+        #quote {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        #title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        #time {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .box {
+            width: 400px;
+            height: 100px;
+            margin: 20px auto;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            box-shadow: none;
+        }
+        
+        .box h2 {
+            margin: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="title">民以食为天</div>
+    <div id="time">当前时间：加载中...</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <div class="card bg-transparent border-0 box" onclick="location.href='menu.html'">
+                    <div class="card-body">
+                        <h2 class="card-title">→ 随机地点推荐🪄</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card bg-transparent border-0 box" onclick=openMeituanApp()>
+                    <div class="card-body">
+                        <h2 class="card-title">→ 周边美食推荐🍕</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card bg-transparent border-0 box" onclick="location.href='https://gpt.bkcat.cn'">
+                    <div class="card-body">
+                        <h2 class="card-title">→ 跟 AI 聊聊吃啥😎</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <div id="quote">好好生活，好好吃饭！</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 美食古诗词
+        var quotes = [
+            "人间定无可意，怎换得玉脍丝莼。",
+            "围炉聚炊欢呼处，百味消融小釜中。",
+            "兰陵美酒郁金香，玉碗盛来琥珀光。",
+            "天上苏陀供，悬知未易同。",
+            "生酒鲟鱼会，边炉蚬子羹。",
+            "西塞山前白鹭飞，桃花流水鳜鱼肥。",
+            "纤手搓来玉色匀，碧油煎出嫩黄深。",
+            "雪松酥腻千丝缕，除却松江到处无。",
+            "雪沫乳花浮午盏，蓼茸蒿笋试春盘。人间有味是清欢。",
+            "日啖荔枝三百颗，不辞长作岭南人。"
+        ];
+        
+        // 随机选择古诗词并更新页面内容
+        function updateQuote() {
+            var quote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById("quote").textContent = quote;
+        }
+        
+        // 更新时间
+        function updateTime() {
+            var now = new Date();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var timeString = month + "月" + day + "日" + hour + "点" + minute + "分" + second + "秒";
+            document.getElementById("time").textContent = "当前时间：" + timeString;
+        }
+        
+        // 定时更新名言警句和时间
+        setInterval(updateQuote, 10000); // 每5秒更新一次名言警句
+        setInterval(updateTime, 1000); // 每秒更新一次时间
+
+        // 打开本地美团 app 或网页端
+        function openMeituanApp() {
+            // 替换成美团 App 的自定义 URL Scheme
+            var urlScheme = "imeituan://www.meituan.com/search?q=周边美食推荐";
+            
+            // 创建一个临时的 <a> 元素
+            var link = document.createElement("a");
+            
+            // 设置链接的 href 属性为美团 App 的自定义 URL Scheme
+            link.href = urlScheme;
+            
+            link.click();
+            // 判断是否为移动设备，并且检测是否安装了美团 App
+            if (/(iPhone|iPod|iPad|Android)/.test(navigator.userAgent) && isAppInstalled(urlScheme)) {
+                // 移动设备且已安装美团 App，直接打开 App
+                link.click();
+            } else {
+                // 跳转到 i.meituan.com 网站
+                window.location.href = "https://i.meituan.com";
+            }
+        }
+        
+        // 检测是否安装了指定的 App
+            // 检测是否安装了指定的 App
+        function isAppInstalled(urlScheme) {
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (/iphone|ipad|ipod/.test(userAgent)) {
+                // iOS 设备，使用 Universal Links 或判断是否有特定的 App URL Scheme
+                var appInstalled = true; // 假设 App 已安装
+
+                // 检测是否安装了美团 App
+                if (!navigator.standalone && !window.webkit.messageHandlers.meituan) {
+                    appInstalled = false;
+                }
+
+                return appInstalled;
+            } else if (/android/.test(userAgent)) {
+                // Android 设备，使用 intent 协议判断是否有特定的 App Package
+                var intentUrl = "intent://" + urlScheme.replace("://", "/#Intent;scheme=") + ";end";
+                var appInstalled = true; // 假设 App 已安装
+
+                // 创建一个临时的 <a> 元素
+                var link = document.createElement("a");
+                link.href = intentUrl;
+
+                // 检测是否安装了美团 App
+                link.onerror = function() {
+                appInstalled = false;
+            };
+            document.body.appendChild(link);
+            document.body.removeChild(link);
+
+            return appInstalled;
+        }
+        return false; // 默认返回未安装
+        }
+    </script>
+</body>
+</html>

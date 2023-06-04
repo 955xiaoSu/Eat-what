@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+    <meta charset="UTF-8">
+    <title>邮箱订阅</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url(./picture/email_subscribe_background.png) no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>邮箱订阅</h2>
+            <form action="email_subscribe.php" method="POST">
+                <p>订阅后，每天12点与18点，您将在邮箱中看到为您推荐的吃饭地点哦🤣</p>
+                <input type="email" name="email" placeholder="请输入您的邮箱账号" required>
+                <br>
+                <input type="submit" value="确认">
+            </form>
+        </div>
+    </div>
+    <script>
+        // Check if the URL has a success message
+        var urlParams = new URLSearchParams(window.location.search);
+        var successMessage = urlParams.get("success");
+
+        // If success message is present, show alert
+        if (successMessage === "Subscription successful") {
+            alert("恭喜您，您已成功实现邮箱订阅！");
+        }
+    </script>
+</body>
+</html>

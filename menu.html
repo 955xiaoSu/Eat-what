@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+    <meta charset="UTF-8">
+    <title>随机地点推荐</title>
+    <style>
+        body {
+            font-family: "宋体", Arial, sans-serif;
+            text-align: center;
+            background: url(./picture/menu_background.jpg) no-repeat center center fixed;
+            background-size: cover;
+            opacity: 1;
+        }
+        
+        #random-btn {
+            display: inline-block;
+            margin-top: 0px;
+            padding: 10px 20px;
+            background-color: #ccc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #output-box {
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        #subscribe-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        #title {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        #time {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        #restaurant-list {
+            width: 300px;
+            margin: 20px auto;
+            font-size: 18px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        #restaurant-list ul {
+            list-style-type: none;
+            padding-left: 0;
+            animation: scroll 50s infinite linear;
+        }
+        
+        #restaurant-list li {
+            color: #000000;
+            animation: scroll 50s infinite;
+            padding-bottom: 1.5em;
+            margin-bottom: -1.5em;
+        }
+
+        #restaurant-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        @keyframes scroll {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+
+        
+    }
+
+    
+    </style>
+</head>
+<body>
+    <button id="subscribe-button" onclick="location.href='email_subscribe.html'">邮箱订阅</button>
+    <br>
+    <div id="title">吃完去吹吹后湖的晚风吧🎈</div>
+    <div id="time">当前时间：加载中...</div>
+    
+    <div id="restaurant-list">
+        <ul>
+            <li style="color: #ff9999;">天马小区</li>
+            <li style="color: #66b3ff;">天马食堂</li>
+            <li style="color: #99ff99;">美食街</li>
+            <li style="color: #ffb3e6;">海底捞</li>
+            <li style="color: #99e6e6;">香港佬</li>
+            <li style="color: #ed0909;">师大食堂</li>
+            <li style="color: #800d0d;">成都小酒馆</li>
+            <li style="color: #0d5680;">一帆家菜馆</li>
+            <li style="color: #248f84;">东北一家人</li>
+            <li style="color: #c031a6;">老嘉杀猪粉</li>
+            <li style="color: #1c9e4c;">花道寿司</li>
+            <li style="color: #53586c;">花雕醉鸡</li>
+            <li style="color: #a98523;">北京片皮烤鸭</li>
+        </ul>
+    </div>
+    
+    <button id="random-btn">随机选取一家幸运店铺</button>
+    <div id="output-box"></div>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            var now = new Date();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            var timeString = month + "月" + day + "日" + hour + "点" + minute + "分" + second + "秒";
+            document.getElementById("time").textContent = "当前时间：" + timeString;
+        }
+        
+        // 定时更新时间
+        setInterval(updateTime, 1000); // 每秒更新一次时间
+
+          // 随机选取一家幸运店铺
+          function getRandomRestaurant() {
+            var restaurantList = document.querySelectorAll("#restaurant-list li");
+            var randomIndex = Math.floor(Math.random() * restaurantList.length);
+            var randomRestaurant = restaurantList[randomIndex].textContent;
+            document.getElementById("output-box").textContent = randomRestaurant;
+        }
+
+        // 绑定随机选取按钮的点击事件
+        var randomBtn = document.getElementById("random-btn");
+        randomBtn.addEventListener("click", getRandomRestaurant);
+    </script>
+</body>
+</html>
