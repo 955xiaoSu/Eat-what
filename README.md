@@ -7,10 +7,15 @@ demo: https://bkcat.cn/eat
 
 ### 架构设计
 前端：html
+
 后端：php + python
 
 #### 各文件功能说明
-具体过程：index.html 作为主入口，menu.html 实现了随机地点推荐的功能，同时附带了“邮箱订阅”功能（由 email_subscribe.html & email_subscribe.php 具体实现），遗憾的是 crontab 有点 bug，不能实现定时发送（发送邮件由 send_email.py 负责具体实现），即目前只能手动定时发送了。
+`index.html` 作为主入口
+
+`menu.html` 实现了随机地点推荐的功能，同时附带了“邮箱订阅”功能（由 `email_subscribe.html` & `email_subscribe.php` 具体实现），
+
+遗憾的是 crontab 有点 bug，不能实现定时发送（发送邮件由 `send_email.py` 负责具体实现），即目前只能手动定时发送了。
 
 ### 实现过程中的一些想法
 1. 对于“随机地点推荐”这一功能，原本设想的是实现用户的个性化定制菜单推荐，然而涉及到数据库和 token 的调用，小尝试了一下，感觉复杂度偏高遂放弃（根本原因是自己既菜又懒）；
